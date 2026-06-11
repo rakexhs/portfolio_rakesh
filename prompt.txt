@@ -1,0 +1,733 @@
+You are an expert creative frontend engineer, WebGL developer, UX designer, motion designer, and portfolio strategist. Build a state-of-the-art personal portfolio website for me from scratch.
+
+The final result must be a complete, production-ready, Vercel-deployable portfolio website for Rakesh Saraswat. It should feel like a next-generation interactive 2D/3D web experience, not a regular portfolio template.
+
+The website must feel immersive, cinematic, technical, sharp, interactive, and memorable. It should combine procedural 3D graphics, strong 2D interface design, animated typography, custom cursor tracking, scroll-based animation, hover interactions, project previews, smooth transitions, and a polished professional structure.
+
+My goal:
+Create a portfolio that feels like an “Interactive Digital Console / Cinematic Developer Lab” for a Software Engineer Intern. Visitors should feel like they are entering a futuristic personal workspace where projects, skills, and contact information are presented through a premium interactive experience.
+
+MY DETAILS
+
+Name: Rakesh Saraswat
+Location: Long Beach, CA
+Role: Software Engineer Intern
+Email: [rgsaraswat2002@gmail.com](mailto:rgsaraswat2002@gmail.com)
+GitHub: https://github.com/rakexhs
+LinkedIn: https://www.linkedin.com/in/rakesh-saraswat-907a3b233
+
+COPYWRITING RULES
+
+Position me specifically as a Software Engineer Intern.
+
+Use a copy tone that is:
+
+* Sharp
+* Technical
+* Forward-thinking
+* Professional
+* Confident
+* Modern
+* Slightly futuristic
+* Not cringe
+* Not overly buzzword-heavy
+
+Do not invent fake companies, employment, degrees, awards, certifications, or credentials.
+
+You may write polished copy based on the information given, but keep it honest and general where exact experience details are missing.
+
+CORE CONSTRAINT
+
+I am developing strictly inside VS Code.
+
+Do not require:
+
+* Blender
+* Spline
+* Figma
+* Framer
+* Webflow
+* After Effects
+* Any external design/modeling software
+
+Very important:
+Do not use imported 3D models such as .glb or .gltf.
+
+All 3D elements must be procedurally generated using code, mathematical logic, shaders, Three.js primitives, points, particles, lines, geometry, CSS, SVG, gradients, canvas, or WebGL.
+
+The site should look premium without relying on external 3D assets.
+
+TECH STACK TO USE
+
+Use this stack unless there is a strong technical reason not to:
+
+* Next.js with App Router
+* React
+* TypeScript
+* Tailwind CSS
+* three
+* @react-three/fiber
+* @react-three/drei
+* gsap
+* @gsap/react
+* ScrollTrigger
+* lenis
+* framer-motion or motion for UI animation if useful
+* lucide-react if icons are needed
+* GLSL custom shaders for at least one visual effect
+* GitHub public API or curl for fetching project data
+* Vercel-ready deployment
+
+If the current folder is empty, initialize a full Next.js project.
+
+If a project already exists, inspect it first and improve it safely.
+
+INSPIRATION WEBSITES TO ANALYZE
+
+Before building, analyze these websites for design principles, interaction patterns, layout ideas, animation techniques, visual mood, cursor behavior, typography, transitions, and portfolio structure.
+
+Do not copy their code, assets, text, branding, images, or exact design. Use them only as creative references.
+
+Top inspiration websites:
+
+1. https://activetheory.net/
+   Inspiration:
+   Premium WebGL atmosphere, high-end interaction quality, cinematic transitions, advanced cursor-reactive visuals, immersive 3D/2D web experiences.
+
+2. https://bruno-simon.com/
+   Inspiration:
+   Portfolio as an experience, playful 3D world, interactive navigation, memorable personality, technical creativity.
+
+3. https://www.aboutluca.com/work/
+   Inspiration:
+   Light-source menu behavior, cinematic mood, WebGL particles, immersive portfolio feel, sound/visual atmosphere.
+
+4. https://www.stabondar.com/
+   Inspiration:
+   Macro animations, hover interactions, bold frontend developer identity, animated transitions, strong motion language.
+
+5. https://evanfasquelle.com/
+   Inspiration:
+   Gamified work browsing, collectible-card style interaction, progress/unlock feeling, playful project discovery.
+
+6. https://www.hardikbhansali.com/
+   Inspiration:
+   Retro TV/interface visuals, shader-like effects, unique visual metaphor, distinctive creative identity.
+
+7. https://valentincheval.design/
+   Inspiration:
+   Strong personal image, polished personal branding, smooth animation, premium case-study feel.
+
+8. https://www.isabelmoranta.com/
+   Inspiration:
+   Fullscreen typography, dark cinematic art direction, elegant text animation, editorial visual rhythm.
+
+9. https://guillaumecolombel.fr/works
+   Inspiration:
+   Project hover previews, interactive work index, creative developer feel, polished project browsing.
+
+10. https://www.designisfunny.co/#about
+    Inspiration:
+    Playful identity, 3D/2D blend, hover effects, bold visual language.
+
+Additional references to consider if useful:
+
+* https://www.daofor.design/
+* https://arocksworld.com/
+* https://nivora.framer.website/
+* https://yannickgregoire.nl/
+* https://www.bleibtgleich.com/
+* https://olaolu.dev/
+* https://brittanychiang.com/
+* https://nashe.dev/
+* https://danspratling.dev/
+* https://robbowen.digital/
+* https://michaelpumo.com/
+* https://www.legworkstudio.com/
+* https://vanholtz.co/
+
+If you cannot access the internet or if some websites are unavailable, continue using the design notes above and make the best possible creative implementation.
+
+DESIGN DIRECTION
+
+Build the portfolio around this concept:
+
+“Interactive Digital Console / Cinematic Developer Lab”
+
+The site should feel like a futuristic software engineering workspace with a global WebGL scene behind layered 2D UI panels.
+
+Visual style:
+
+* Premium dark theme
+* Black/white foundation with selective accent colors
+* Futuristic but clean
+* Large expressive typography
+* Glassmorphism used carefully
+* Subtle gradients
+* Cursor-reactive glow
+* Procedural particles
+* Floating geometric objects
+* HUD-like interface details
+* Smooth parallax
+* Sharp professional spacing
+* High contrast
+* Minimal but memorable
+
+The website should feel inspired by Awwwards-level creative sites, but still be usable and readable for recruiters.
+
+Do not make it look like a generic Tailwind template.
+
+REQUIRED SITE SECTIONS
+
+1. HERO / INTRO
+
+Create a fullscreen hero section.
+
+Required content:
+
+* Rakesh Saraswat
+* Software Engineer Intern
+* Long Beach, CA
+* A strong subtitle such as:
+  “Building sharp, interactive software experiences across modern web, systems, and AI-driven products.”
+
+Add CTA buttons:
+
+* View Projects
+* Contact Me
+* GitHub
+* LinkedIn
+
+Hero interaction requirements:
+
+* Massive animated typography
+* GSAP intro animation on load
+* Procedural 3D/WebGL background
+* Cursor-reactive visual distortion or glow
+* Floating geometric elements
+* Scroll-to-explore indicator
+* HUD detail such as “Available for internships”, “Long Beach, CA”, or live cursor coordinates
+* Subtle 3D distortion effect on hover over the main name/title
+* Smooth entrance animation that feels premium
+
+2. ABOUT
+
+Create an About section that introduces me honestly as a Software Engineer Intern based in Long Beach, CA.
+
+Suggested direction:
+
+* I am interested in software engineering, interactive web experiences, creative frontend engineering, modern digital products, AI/LLM applications, and building polished user-facing systems.
+* Keep the copy concise and technical.
+* Use animated text reveals and layered panels.
+* Include a small “system profile” or “developer card” UI.
+
+Do not invent exact employment history or personal facts.
+
+3. PROJECTS
+
+Pull my public projects from GitHub:
+https://github.com/rakexhs
+
+Use the GitHub public API. Run or implement something equivalent to:
+
+curl -s https://api.github.com/users/rakexhs/repos
+
+Use the returned public repositories to build the project showcase.
+
+Project selection rules:
+
+* Prefer repositories that appear more portfolio-relevant.
+* Highlight projects related to LLMs, AI, Swift, Electron, web apps, full-stack apps, or strong software engineering work.
+* Consider recency, description quality, language, stars, topics, homepage/demo link, and README quality if available.
+* If pinned repositories can be accessed reliably, prefer pinned repositories.
+* If GitHub API fails or rate-limits, use a graceful fallback project list and clearly comment the fallback in code.
+* Do not fabricate project details.
+* Use available GitHub descriptions when possible.
+
+Each project card should show:
+
+* Project name
+* Short description
+* Main language or tech
+* GitHub link
+* Live demo link if available from repo homepage
+* Updated date or status if useful
+
+Project design requirements:
+
+* Make this section feel like spatial project navigation, not a normal grid.
+* Use deep vertical parallax.
+* On scroll, project cards should scale, rotate, or move on the Z-axis.
+* Add hover previews inspired by Guillaume Colombel.
+* Add collectible/card-like interaction inspired by Evan Fasquelle.
+* Project cards should tilt slightly based on mouse position.
+* Hover should reveal actions and metadata.
+* Include at least one featured project layout and several smaller project cards.
+* Make it responsive and usable on mobile.
+
+4. SKILLS / TECH STACK
+
+Create an interactive skills section.
+
+Include skills inferred from GitHub repositories if possible.
+
+Also include appropriate skills such as:
+
+* JavaScript
+* TypeScript
+* React
+* Next.js
+* Node.js
+* HTML
+* CSS
+* Tailwind CSS
+* Git
+* GitHub
+* APIs
+* Three.js
+* Frontend Engineering
+* Responsive Design
+* Software Engineering
+* AI/LLM Applications if supported by repositories
+* Swift if supported by repositories
+* Electron if supported by repositories
+
+Visual treatment:
+
+* Animated tags
+* Orbiting elements
+* Magnetic chips
+* Floating panels
+* Depth/parallax
+* Clean readability
+
+5. EXPERIENCE / JOURNEY
+
+Create a short journey/timeline section.
+
+Since detailed experience was not provided, keep it honest and general.
+
+Possible copy direction:
+
+* “Building projects across software engineering, interactive web development, and AI-powered applications.”
+* “Exploring the intersection of frontend engineering, product thinking, and immersive interfaces.”
+* “Focused on writing clean, scalable code and designing interfaces that feel fast, intentional, and engaging.”
+
+Do not invent companies or job titles.
+
+6. CONTACT
+
+Create a strong closing section.
+
+Required:
+
+* Email: [rgsaraswat2002@gmail.com](mailto:rgsaraswat2002@gmail.com)
+* GitHub link
+* LinkedIn link
+* mailto link
+
+Interaction:
+
+* Magnetic buttons
+* Animated hover states
+* Cursor-reactive glow
+* Premium closing animation
+* Clear CTA such as:
+  “Let’s build something sharp.”
+
+GLOBAL INTERACTION REQUIREMENTS
+
+Implement the following:
+
+* Smooth scrolling with Lenis
+* GSAP ScrollTrigger animations
+* @gsap/react where useful
+* Global custom cursor
+* Cursor tracked using React state or a performant external store
+* Cursor smoothing using linear interpolation, lerp, or requestAnimationFrame
+* Cursor hover states:
+
+  * default
+  * link hover
+  * button hover
+  * project-card hover
+* Cursor follower with trailing dot or glow ring
+* Magnetic buttons
+* Hover preview animations
+* Scroll-based section transitions
+* Persistent full-page WebGL canvas behind DOM content
+* Procedural 3D objects using React Three Fiber
+* Particle field or starfield
+* At least one custom GLSL ShaderMaterial
+* Map mouse coordinates to shader uniforms
+* Floating procedural geometry such as TorusKnot, spheres, rings, planes, line meshes, or particles
+* Subtle parallax on text/cards
+* Animated loading/intro sequence
+* Reduced-motion support
+* Responsive mobile fallback
+* Keyboard accessibility
+* No console errors
+
+WEBGL / 3D REQUIREMENTS
+
+Create a global R3F canvas behind the DOM.
+
+Use only procedural code-generated elements.
+
+Ideas you can combine:
+
+* Twisting TorusKnot
+* Particle field
+* Points-based galaxy/constellation
+* Wireframe objects
+* Shader plane
+* Cursor-reactive light field
+* Floating rings
+* Digital grid
+* Animated orbital elements
+
+Required:
+
+* At least one custom shader using GLSL.
+* Shader should react to time and mouse coordinates.
+* Mouse coordinates should be passed into uniforms.
+* Keep GPU usage reasonable.
+* Optimize for mobile.
+* Respect prefers-reduced-motion.
+
+Do not import .glb or .gltf files.
+
+CUSTOM CURSOR REQUIREMENTS
+
+Build a physics-feeling cursor.
+
+Requirements:
+
+* Cursor position tracked globally
+* Smooth trailing effect using lerp
+* Small center dot
+* Larger ring/glow follower
+* Expands over links and buttons
+* Magnetic snap effect for important buttons
+* Special hover state over project cards
+* Hidden or simplified on touch devices
+* Does not break clicking or accessibility
+* Uses pointer-events: none
+
+TYPOGRAPHY REQUIREMENTS
+
+Use typography as a major part of the design.
+
+Inspired by:
+
+* arocksworld.com
+* yannickgregoire.nl
+* bleibtgleich.com
+* isabelmoranta.com
+
+Requirements:
+
+* Massive hero typography
+* Strong black/white contrast
+* Animated text reveal on load
+* Section headings animate word-by-word or character-by-character
+* Some brutalist/high-fashion minimalism influence
+* Text remains readable
+* Avoid generic SaaS landing-page typography
+
+SCROLL / TRANSITION REQUIREMENTS
+
+Inspired by:
+
+* nivora.framer.website
+* evanfasquelle.com
+* activetheory.net
+
+Requirements:
+
+* Smooth scroll
+* Vertical parallax
+* Macro section transitions
+* Background color or gradient shifts while scrolling
+* Projects move with scale/depth/rotation, not just simple fade-up
+* DOM sections should feel blended with the 3D canvas
+* Use ScrollTrigger where appropriate
+* Avoid over-animating on mobile
+
+PERFORMANCE REQUIREMENTS
+
+Make the site fast enough to actually use.
+
+Requirements:
+
+* Use dynamic imports for heavy WebGL components if needed
+* Avoid large external assets
+* Use procedural visuals instead of heavy files
+* Throttle or optimize pointer movement logic
+* Avoid layout thrashing
+* Keep R3F scene reasonably lightweight
+* Use device pixel ratio limits for canvas
+* Mobile fallback should be lighter
+* Respect prefers-reduced-motion
+* Prevent hydration errors
+* Ensure build passes
+* No TypeScript errors
+* No obvious lint errors
+* No runtime console errors
+
+ACCESSIBILITY REQUIREMENTS
+
+Requirements:
+
+* Semantic HTML
+* Proper heading structure
+* Keyboard-accessible links/buttons
+* Visible focus states
+* Good color contrast
+* aria-labels where needed
+* Custom cursor must not replace required browser behavior
+* Do not rely only on animation to communicate information
+* Add reduced-motion support
+* Ensure mobile usability
+
+RESPONSIVE REQUIREMENTS
+
+The website must look good on:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+On mobile:
+
+* Reduce heavy WebGL effects
+* Hide or simplify custom cursor
+* Keep project cards readable
+* Keep CTAs easy to tap
+* Avoid horizontal overflow
+* Preserve the premium feel
+
+RECOMMENDED PROJECT STRUCTURE
+
+Create or adapt a clean structure similar to:
+
+src/
+app/
+page.tsx
+layout.tsx
+globals.css
+components/
+canvas/
+ExperienceCanvas.tsx
+ParticleField.tsx
+FloatingObjects.tsx
+ShaderPlane.tsx
+CursorLight.tsx
+sections/
+Hero.tsx
+About.tsx
+Projects.tsx
+Skills.tsx
+Journey.tsx
+Contact.tsx
+ui/
+CustomCursor.tsx
+MagneticButton.tsx
+AnimatedText.tsx
+ProjectCard.tsx
+SectionHeading.tsx
+SmoothScroll.tsx
+Navigation.tsx
+hooks/
+useMousePosition.ts
+useLenis.ts
+useReducedMotion.ts
+lib/
+github.ts
+utils.ts
+data/
+personal.ts
+fallbackProjects.ts
+
+README REQUIREMENTS
+
+Add a README.md explaining:
+
+* Project overview
+* Tech stack
+* Key features
+* How to run locally
+* How to deploy to Vercel
+* Where to edit personal data
+* How GitHub projects are fetched
+* How fallback projects work
+* Notes about procedural 3D and no imported models
+
+Add .env.example only if environment variables are needed.
+
+NAVIGATION
+
+Create minimal navigation:
+
+* Rakesh
+* Work
+* About
+* Skills
+* Contact
+
+Navigation requirements:
+
+* Smooth scroll to sections
+* Hover animations
+* Works on mobile
+* Does not block the 3D canvas
+* Feels like part of the digital console
+
+AUTONOMOUS EXECUTION PLAN
+
+Execute this step-by-step without stopping:
+
+Step 1:
+Inspect the current folder.
+
+Step 2:
+If needed, initialize a Next.js App Router project with React, TypeScript, Tailwind CSS, and ESLint.
+
+Step 3:
+Install dependencies:
+
+* three
+* @react-three/fiber
+* @react-three/drei
+* gsap
+* @gsap/react
+* lenis
+* framer-motion or motion
+* lucide-react
+* any small utility packages needed
+
+Step 4:
+Create the project structure.
+
+Step 5:
+Add personal data configuration for Rakesh Saraswat.
+
+Step 6:
+Create global styles, typography system, theme variables, Tailwind utilities, and responsive base layout.
+
+Step 7:
+Implement Lenis smooth scrolling.
+
+Step 8:
+Implement the global custom cursor with lerp smoothing, hover states, trailing dot/ring, magnetic interactions, and mobile fallback.
+
+Step 9:
+Implement the global R3F WebGL canvas behind the DOM.
+
+Step 10:
+Create procedural 3D visuals:
+
+* particles or starfield
+* floating geometry
+* shader plane
+* cursor-reactive uniforms
+* time-based animation
+
+Step 11:
+Build the Hero section with animated typography, CTAs, HUD details, and intro sequence.
+
+Step 12:
+Build the About section with polished copy and animated reveals.
+
+Step 13:
+Fetch GitHub repositories from:
+https://api.github.com/users/rakexhs/repos
+
+Use fetched data to build the Projects section.
+
+Also try to identify or highlight projects related to:
+
+* LLM
+* AI
+* Swift
+* Electron
+* Web apps
+* Full-stack development
+* Strong software engineering work
+
+Step 14:
+Create the spatial Projects section with parallax, Z-axis scale/rotation, hover previews, project cards, and featured work.
+
+Step 15:
+Create the Skills section with animated tags/chips/orbits and GitHub-informed skills where possible.
+
+Step 16:
+Create the Journey section honestly without inventing fake credentials.
+
+Step 17:
+Create the Contact section with email, GitHub, LinkedIn, mailto, and magnetic buttons.
+
+Step 18:
+Wire up GSAP ScrollTrigger animations across sections.
+
+Step 19:
+Add responsive design and mobile-specific behavior.
+
+Step 20:
+Add reduced-motion support and accessibility improvements.
+
+Step 21:
+Run lint/build/type checks.
+
+Step 22:
+Fix all errors autonomously.
+
+Step 23:
+Update README.md.
+
+Step 24:
+Provide a final summary of:
+
+* What was built
+* Commands to run
+* Main files created
+* How to deploy
+* Any assumptions made
+
+QUALITY BAR
+
+The final website should feel:
+
+* State-of-the-art
+* Interactive
+* Experimental
+* Technically impressive
+* Clean
+* Recruiter-friendly
+* Personal to Rakesh Saraswat
+* Smooth and polished
+* Like an experience, not a normal website
+
+Do not stop and ask for permission unless the project truly cannot proceed.
+
+If something is missing, make the best professional decision yourself.
+
+Do not leave placeholder lorem ipsum in the final visible UI.
+
+Do not copy any inspiration website directly.
+
+Do not use imported 3D models.
+
+Do not produce a plain static portfolio.
+
+Build the complete site, test it, fix issues, and make it ready to run with:
+
+npm install
+npm run dev
+
+Also ensure:
+
+npm run build
+
+passes successfully.
