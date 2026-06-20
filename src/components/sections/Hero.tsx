@@ -132,10 +132,6 @@ export default function Hero() {
       className="relative flex min-h-svh flex-col justify-center overflow-hidden px-6 md:px-10"
       aria-label="Introduction"
     >
-      {/* HUD corners */}
-      <div data-hero-hud className="hud-label absolute left-6 top-24 hidden md:block">
-        {personal.availability}
-      </div>
       <div className="mx-auto w-full max-w-7xl" style={{ perspective: "1200px" }}>
         <p data-hero-meta className="hud-label mb-6 flex items-center gap-3 !text-accent">
           <span className="inline-block h-1.5 w-1.5 animate-blink rounded-full bg-accent" />

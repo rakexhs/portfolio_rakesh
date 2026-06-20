@@ -4,6 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { sceneState, SECTION_ACCENTS, HERO_ACCENT } from "@/lib/scene";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,9 +43,44 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     };
     document.addEventListener("click", onClick);
 
+    // --- Feed the shared scene store so the WebGL layer reacts to scroll ---
+    const triggers: ScrollTrigger[] = [];
+
+    // Overall page progress, 0 (top) -> 1 (bottom).
+    triggers.push(
+      ScrollTrigger.create({
+        start: 0,
+        end: () => ScrollTrigger.maxScroll(window),
+        onUpdate: (self) => {
+          sceneState.scroll = self.progress;
+        },
+      })
+    );
+
+    // Active-section accent: each section claims the accent while its body is
+    // crossing the viewport center, from either scroll direction.
+    SECTION_ACCENTS.forEach(({ id, accent }, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      triggers.push(
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => (sceneState.accent = accent),
+          onEnterBack: () => (sceneState.accent = accent),
+          // Scrolling back above the first section returns to the hero accent.
+          onLeaveBack: i === 0 ? () => (sceneState.accent = HERO_ACCENT) : undefined,
+        })
+      );
+    });
+
+    ScrollTrigger.refresh();
+
     return () => {
       document.removeEventListener("click", onClick);
       gsap.ticker.remove(tick);
+      triggers.forEach((t) => t.kill());
       lenis.destroy();
     };
   }, []);

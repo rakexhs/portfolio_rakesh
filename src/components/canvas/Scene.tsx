@@ -43,8 +43,8 @@ export default function Scene({ reduced, isMobile }: Props) {
       <MouseSmoother />
       <ambientLight intensity={0.4} />
       <CursorLight reduced={reduced} />
-      <ShaderPlane reduced={reduced} />
-      <ParticleField reduced={reduced} count={isMobile ? 450 : 1200} />
+      <ShaderPlane reduced={reduced} isMobile={isMobile} />
+      <ParticleField reduced={reduced} count={isMobile ? 800 : 3500} />
       <WaveGrid reduced={reduced} segments={isMobile ? 48 : 96} />
       {!isMobile && (
         <>

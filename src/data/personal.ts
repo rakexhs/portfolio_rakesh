@@ -10,7 +10,7 @@ export const personal = {
   linkedin: "https://www.linkedin.com/in/rakesh-saraswat-907a3b233",
   tagline:
     "Building sharp, interactive software experiences across modern web, systems, and AI-driven products.",
-  availability: "Available for internships",
+  availability: "Available for internships/Co-ops",
   about: {
     intro:
       "I'm a software engineer based in Long Beach, focused on building user-facing systems that feel fast, intentional, and engaging.",
