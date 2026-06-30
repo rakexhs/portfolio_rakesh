@@ -62,18 +62,16 @@ const fragmentShader = /* glsl */ `
     vec2 c = gl_PointCoord - 0.5;
     float d = length(c);
     float circle = smoothstep(0.5, 0.08, d);
-    // Playful multicolor tinting: teal -> sky -> violet -> magenta -> amber
-    vec3 teal = vec3(0.62, 0.93, 0.86);
-    vec3 sky = vec3(0.42, 0.78, 0.98);
-    vec3 violet = vec3(0.72, 0.62, 0.98);
-    vec3 magenta = vec3(0.91, 0.55, 0.98);
-    vec3 amber = vec3(0.98, 0.78, 0.36);
-    vec3 col = teal;
-    col = mix(col, sky, smoothstep(0.15, 0.35, vTint));
-    col = mix(col, violet, smoothstep(0.35, 0.55, vTint));
-    col = mix(col, magenta, smoothstep(0.55, 0.78, vTint));
-    col = mix(col, amber, smoothstep(0.78, 0.96, vTint));
-    gl_FragColor = vec4(col, circle * vAlpha * 0.85);
+    // Ink stipple on paper: mostly ink dots with occasional pigment specks.
+    vec3 ink = vec3(0.12, 0.10, 0.08);
+    vec3 verm = vec3(0.78, 0.20, 0.07);
+    vec3 cobalt = vec3(0.10, 0.26, 0.55);
+    vec3 ochre = vec3(0.66, 0.52, 0.10);
+    vec3 col = ink;
+    col = mix(col, verm, smoothstep(0.72, 0.80, vTint));
+    col = mix(col, cobalt, smoothstep(0.84, 0.90, vTint));
+    col = mix(col, ochre, smoothstep(0.94, 0.985, vTint));
+    gl_FragColor = vec4(col, circle * vAlpha * 0.55);
   }
 `;
 
@@ -99,7 +97,8 @@ const lineFragmentShader = /* glsl */ `
   precision mediump float;
   varying float vAlpha;
   void main() {
-    gl_FragColor = vec4(vec3(0.36, 0.80, 0.74), vAlpha * 0.16);
+    // Thin ink web between nearby specks.
+    gl_FragColor = vec4(vec3(0.14, 0.12, 0.09), vAlpha * 0.12);
   }
 `;
 
@@ -264,7 +263,7 @@ export default function ParticleField({
           uniforms={uniforms}
           transparent
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
+          blending={THREE.NormalBlending}
         />
       </points>
 
@@ -282,7 +281,7 @@ export default function ParticleField({
             uniforms={uniforms}
             transparent
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
+            blending={THREE.NormalBlending}
           />
         </lineSegments>
       )}

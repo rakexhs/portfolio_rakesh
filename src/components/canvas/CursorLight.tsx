@@ -19,9 +19,9 @@ export default function CursorLight({ reduced }: { reduced: boolean }) {
     <pointLight
       ref={lightRef}
       position={[0, 0, 2]}
-      intensity={14}
+      intensity={10}
       distance={12}
-      color="#5eead4"
+      color="#df451d"
     />
   );
 }

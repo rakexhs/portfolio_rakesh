@@ -45,13 +45,14 @@ const fragmentShader = /* glsl */ `
   varying float vDist;
 
   void main() {
-    vec3 low = vec3(0.07, 0.14, 0.24);    // deep blue valleys
-    vec3 mid = vec3(0.37, 0.92, 0.83);    // teal slopes
-    vec3 high = vec3(0.91, 0.55, 0.98);   // magenta crests
+    // Ink contour lines on paper: cobalt valleys -> ink -> vermillion crests.
+    vec3 low = vec3(0.13, 0.31, 0.62);    // cobalt valleys
+    vec3 mid = vec3(0.16, 0.13, 0.10);    // ink slopes
+    vec3 high = vec3(0.84, 0.27, 0.11);   // vermillion crests
     float t = smoothstep(-1.0, 1.4, vElev);
     vec3 col = mix(low, mid, smoothstep(0.0, 0.6, t));
     col = mix(col, high, smoothstep(0.6, 1.0, t));
-    float alpha = (0.34 - vDist * 0.26) * smoothstep(-1.2, 0.8, vElev);
+    float alpha = (0.30 - vDist * 0.22) * smoothstep(-1.2, 0.8, vElev);
     gl_FragColor = vec4(col, max(alpha, 0.0));
   }
 `;

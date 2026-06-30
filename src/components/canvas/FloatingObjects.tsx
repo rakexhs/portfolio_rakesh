@@ -127,12 +127,14 @@ function InteractiveShape({
     if (matRef.current) {
       matRef.current.opacity = THREE.MathUtils.lerp(
         matRef.current.opacity,
-        hovered ? 0.85 : 0.38,
+        hovered ? 0.95 : 0.6,
         0.1
       );
+      // Low emissive on the light stock so wireframes read as ink linework,
+      // not glow; a small lift on hover keeps the interaction legible.
       matRef.current.emissiveIntensity = THREE.MathUtils.lerp(
         matRef.current.emissiveIntensity,
-        hovered ? 1.6 : 0.6,
+        hovered ? 0.5 : 0.15,
         0.1
       );
 
@@ -176,9 +178,9 @@ function InteractiveShape({
           color={color}
           wireframe={wireframe}
           transparent
-          opacity={0.38}
+          opacity={0.6}
           emissive={color}
-          emissiveIntensity={0.6}
+          emissiveIntensity={0.15}
           onBeforeCompile={onBeforeCompile}
         />
       </mesh>

@@ -13,9 +13,9 @@ import * as THREE from "three";
  */
 
 const ORBITS = [
-  { radius: 1.5, speed: 0.55, tilt: 0.45, size: 0.07, color: "#5eead4", phase: 0 },
-  { radius: 2.05, speed: -0.38, tilt: -0.3, size: 0.055, color: "#e879f9", phase: 2.1 },
-  { radius: 2.6, speed: 0.26, tilt: 0.7, size: 0.045, color: "#fbbf24", phase: 4.2 },
+  { radius: 1.5, speed: 0.55, tilt: 0.45, size: 0.07, color: "#df451d", phase: 0 },
+  { radius: 2.05, speed: -0.38, tilt: -0.3, size: 0.055, color: "#21509e", phase: 2.1 },
+  { radius: 2.6, speed: 0.26, tilt: 0.7, size: 0.045, color: "#cf971c", phase: 4.2 },
 ];
 
 export default function OrbitSystem({ reduced }: { reduced: boolean }) {
@@ -68,12 +68,12 @@ export default function OrbitSystem({ reduced }: { reduced: boolean }) {
         >
           <dodecahedronGeometry args={[0.7, 0]} />
           <meshStandardMaterial
-            color="#5eead4"
+            color="#1b1712"
             wireframe
             transparent
-            opacity={0.4}
-            emissive="#134e4a"
-            emissiveIntensity={0.7}
+            opacity={0.55}
+            emissive="#df451d"
+            emissiveIntensity={0.12}
           />
         </mesh>
 
@@ -82,7 +82,7 @@ export default function OrbitSystem({ reduced }: { reduced: boolean }) {
             {/* Orbit path */}
             <mesh rotation={[Math.PI / 2 - orbit.tilt, 0, 0]}>
               <torusGeometry args={[orbit.radius, 0.006, 6, 80]} />
-              <meshBasicMaterial color={orbit.color} transparent opacity={0.18} />
+              <meshBasicMaterial color={orbit.color} transparent opacity={0.4} />
             </mesh>
             {/* Satellite */}
             <mesh

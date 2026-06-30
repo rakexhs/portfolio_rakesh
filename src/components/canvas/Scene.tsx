@@ -41,7 +41,7 @@ export default function Scene({ reduced, isMobile }: Props) {
       aria-hidden="true"
     >
       <MouseSmoother />
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.85} />
       <CursorLight reduced={reduced} />
       <ShaderPlane reduced={reduced} isMobile={isMobile} />
       <ParticleField reduced={reduced} count={isMobile ? 800 : 3500} />

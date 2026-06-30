@@ -57,22 +57,18 @@ const fragmentShader = /* glsl */ `
     return v;
   }
 
-  // Aurora colour at a UV. On desktop the second fbm layer is domain-warped by
-  // a first fbm field (the classic IQ trick: feed noise into the UVs of more
-  // noise) so the fog folds over itself and reads as volume rather than a flat
-  // sliding gradient. The two layers drift at different speeds/directions.
-  vec3 aurora(vec2 uv, vec2 mouse, float t) {
-    vec2 drift = vec2(t * 0.025, -t * 0.018) + mouse * 0.15;
-
-    vec3 teal = vec3(0.10, 0.55, 0.48);
-    vec3 violet = vec3(0.35, 0.25, 0.62);
+  // Paper mottle: a faint, organic ink stain so the stock doesn't read as a
+  // flat fill. On desktop the second fbm layer is domain-warped by a first fbm
+  // field (the IQ trick: feed noise into the UVs of more noise) so the stain
+  // folds over itself. Returns a 0..1 stain mask plus a warm/cool tint mix.
+  vec3 paperStain(vec2 uv, vec2 mouse, float t) {
+    vec2 drift = vec2(t * 0.012, -t * 0.009) + mouse * 0.08;
 
     #ifdef MOBILE
       float fog = fbm(uv * 3.0 + drift);
       float blend = fbm(uv * 2.0 - drift * 0.6);
     #else
-      // First field -> a 2D warp vector that displaces the second field's UVs.
-      vec2 warpDrift = vec2(-t * 0.045, t * 0.06);
+      vec2 warpDrift = vec2(-t * 0.02, t * 0.03);
       vec2 q = vec2(
         fbm(uv * 2.2 + drift),
         fbm(uv * 2.2 + drift + vec2(5.2, 1.3))
@@ -81,53 +77,58 @@ const fragmentShader = /* glsl */ `
       float blend = fbm(uv * 2.0 - drift * 0.6 + q * 1.1);
     #endif
 
-    fog = smoothstep(0.35, 0.95, fog);
-    return mix(teal, violet, blend) * fog * 0.22;
+    fog = smoothstep(0.25, 0.95, fog);
+    // Warm sepia vs cool ink pigment for the stain.
+    vec3 warm = vec3(0.20, 0.12, 0.05);
+    vec3 cool = vec3(0.08, 0.08, 0.12);
+    return mix(warm, cool, blend) * fog;
   }
 
   void main() {
     vec2 uv = vUv;
     vec2 centered = uv * 2.0 - 1.0;
 
-    // Deep base
-    vec3 col = vec3(0.018, 0.022, 0.030);
+    // Warm paper stock.
+    vec3 paper = vec3(0.914, 0.882, 0.812);
+    vec3 col = paper;
 
-    // Aurora fog drifting with time, nudged by the cursor
-    col += aurora(uv, uMouse, uTime) * uIntensity;
+    // Ink mottle (multiply so it darkens the stock like absorbed pigment).
+    vec3 stain = paperStain(uv, uMouse, uTime);
+    col *= 1.0 - stain * 0.10 * uIntensity;
 
-    // Faint console grid, fading toward the top
-    vec2 grid = abs(fract(uv * vec2(28.0, 18.0)) - 0.5);
-    float line = smoothstep(0.49, 0.5, max(grid.x, grid.y));
-    col += vec3(0.5, 0.9, 0.85) * line * 0.02 * (1.0 - uv.y) * uIntensity;
+    // Faint ruled grid pressed into the paper.
+    vec2 grid = abs(fract(uv * vec2(26.0, 16.0)) - 0.5);
+    float line = smoothstep(0.48, 0.5, max(grid.x, grid.y));
+    col *= 1.0 - line * 0.06 * uIntensity;
 
-    // Cursor-reactive glow field
+    // Cursor ink-wash: a vermillion bloom that stains the paper near the
+    // pointer. Multiply blending reads as colored pigment soaking in.
     vec2 toCursor = centered - uMouse;
     float d = length(toCursor);
     float glow = exp(-d * 2.6);
-    vec3 glowTint = vec3(0.18, 0.62, 0.55);
+    vec3 ink = vec3(0.87, 0.27, 0.11); // vermillion
 
     #ifdef MOBILE
-      col += glowTint * glow * 0.16 * uIntensity;
+      col *= mix(vec3(1.0), ink, glow * 0.16 * uIntensity);
     #else
-      // Chromatic aberration, localized to the glow. A radially symmetric glow
-      // barely shows a positional RGB shift (the halo just cancels), so instead
-      // we give each channel its own falloff rate: red bleeds wider, blue stays
-      // tight. That produces a visible chromatic ring around the cursor halo,
-      // plus a small positional split along the radial for directionality.
+      // Chromatic edge: each channel soaks at a different radius, so the wash
+      // carries a subtle RGB fringe at its boundary (red wider, blue tighter).
       float base = d * 2.6;
       vec2 dir = toCursor / max(d, 1e-4);
-      vec2 px = 6.0 / uResolution;        // positional split, scaled by glow
-      float dR = length(toCursor + dir * px * glow) * 2.6;
-      float dB = length(toCursor - dir * px * glow) * 2.6;
-      float gR = exp(-dR * 0.82);         // red halo spreads out further
+      vec2 px = 6.0 / uResolution;
+      float gR = exp(-length(toCursor + dir * px * glow) * 2.6 * 0.82);
       float gG = exp(-base);
-      float gB = exp(-dB * 1.28);         // blue core stays tight
-      col += vec3(gR, gG, gB) * glowTint * 0.18 * uIntensity;
+      float gB = exp(-length(toCursor - dir * px * glow) * 2.6 * 1.28);
+      col *= mix(vec3(1.0), ink, vec3(gR, gG, gB) * 0.18 * uIntensity);
     #endif
 
-    // Vignette
-    float vig = smoothstep(1.55, 0.35, length(centered));
-    col *= vig;
+    // Fine paper grain.
+    float grain = hash(floor(uv * uResolution)) - 0.5;
+    col += grain * 0.018;
+
+    // Soft printed vignette — edges of the stock sit a touch darker.
+    float vig = smoothstep(1.8, 0.35, length(centered));
+    col *= mix(0.93, 1.0, vig);
 
     gl_FragColor = vec4(col, 1.0);
   }

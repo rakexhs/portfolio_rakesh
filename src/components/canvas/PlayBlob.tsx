@@ -58,13 +58,13 @@ export default function PlayBlob({ reduced }: { reduced: boolean }) {
         <sphereGeometry args={[0.9, 48, 48]} />
         <MeshDistortMaterial
           ref={matRef}
-          color="#e879f9"
-          roughness={0.25}
-          metalness={0.3}
+          color="#21509e"
+          roughness={0.5}
+          metalness={0.1}
           distort={0.3}
           speed={2.2}
           transparent
-          opacity={0.85}
+          opacity={0.9}
         />
       </mesh>
     </Float>
