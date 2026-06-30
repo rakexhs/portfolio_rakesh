@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-void: #050608;
-  --color-panel: #0b0d12;
-  --color-line: #1c2028;
-  --color-fog: #8b93a3;
-  --color-ice: #e8ecf4;
-  --color-accent: #5eead4;
-  --color-accent-dim: #2dd4bf;
-  --color-violet-glow: #a78bfa;
-  --color-sky-glow: #38bdf8;
-  --color-magenta-glow: #e879f9;
-  --color-coral: #fb7185;
-  --color-amber-glow: #fbbf24;
+  /* Editorial Paper theme: warm bone stock, ink type, vermillion signal. */
+  --color-void: #e9e1cf; /* page = warm paper */
+  --color-panel: #f3ecdd; /* card = lighter stock */
+  --color-line: #cabd9c; /* taupe rule / borders */
+  --color-fog: #6d6353; /* muted ink (secondary) */
+  --color-ice: #1b1712; /* ink (primary text) */
+  --color-accent: #df451d; /* vermillion signal */
+  --color-accent-dim: #b9360f;
+  --color-violet-glow: #7d3b63; /* plum pigment */
+  --color-sky-glow: #21509e; /* cobalt pigment */
+  --color-magenta-glow: #a23a72; /* magenta-ink pigment */
+  --color-coral: #d9542e; /* warm red pigment */
+  --color-amber-glow: #cf971c; /* ochre pigment */
 
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
@@ -56,10 +57,10 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-void);
+  color: #f3ecdd;
 }
 
-/* Thin console-style scrollbar */
+/* Thin editorial scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -68,10 +69,10 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-line);
-  border-radius: 3px;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-fog);
+  background: var(--color-accent);
 }
 
 /* Visible focus for keyboard users */
@@ -88,19 +89,17 @@ html.custom-cursor-active * {
 }
 
 @utility text-glow {
-  text-shadow: 0 0 24px rgb(94 234 212 / 0.35);
+  text-shadow: 0 1px 0 rgb(27 23 18 / 0.12);
 }
 
 @utility text-gradient {
   background: linear-gradient(
     90deg,
-    #5eead4,
-    #38bdf8,
-    #a78bfa,
-    #e879f9,
-    #fb7185,
-    #fbbf24,
-    #5eead4
+    #df451d,
+    #a23a72,
+    #21509e,
+    #cf971c,
+    #df451d
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
@@ -116,10 +115,10 @@ html.custom-cursor-active * {
 }
 
 @utility panel-glass {
-  background: rgb(11 13 18 / 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgb(255 255 255 / 0.06);
+  background: rgb(243 236 221 / 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(27 23 18 / 0.1);
 }
 
 @utility hud-label {
@@ -128,6 +127,16 @@ html.custom-cursor-active * {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-fog);
+}
+
+/* --- Editorial motifs --- */
+
+/* Faint ruled paper grid, used as a section/background overlay. */
+@utility paper-grid {
+  background-image:
+    linear-gradient(to right, rgb(27 23 18 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(27 23 18 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 /* Word-reveal building blocks used by AnimatedText */
