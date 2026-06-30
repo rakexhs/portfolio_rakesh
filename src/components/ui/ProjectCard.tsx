@@ -26,7 +26,7 @@ function hexToRgba(hex: string, alpha: number): string {
 export default function ProjectCard({
   project,
   featured = false,
-  tint = "#5eead4",
+  tint = "#df451d",
 }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
@@ -71,7 +71,7 @@ export default function ProjectCard({
       data-cursor="project"
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-panel/70 transition-colors duration-500 hover:border-[var(--tint)]/40 ${
+      className={`group relative h-full overflow-hidden rounded-sm border border-line bg-panel/70 transition-colors duration-500 hover:border-[var(--tint)] ${
         featured ? "p-8 md:p-12" : "p-6 md:p-8"
       }`}
       style={
@@ -88,9 +88,13 @@ export default function ProjectCard({
           <span className="hud-label" style={{ color: tint }}>
             {project.domain}
           </span>
-          {featured && (
-            <span className="rounded-full border border-accent/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+          {featured ? (
+            <span className="rounded-sm border border-accent px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
               Featured
+            </span>
+          ) : (
+            <span className="font-mono text-sm leading-none text-line" aria-hidden="true">
+              +
             </span>
           )}
         </div>
@@ -132,6 +136,11 @@ export default function ProjectCard({
               >
                 Live <ArrowUpRight size={12} aria-hidden="true" />
               </a>
+            )}
+            {project.language && (
+              <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.15em] text-fog">
+                {project.language}
+              </span>
             )}
           </div>
         </div>

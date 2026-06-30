@@ -12,10 +12,15 @@ type Props = {
 export default function SectionHeading({ index, label, title, className = "" }: Props) {
   return (
     <div className={`mb-14 md:mb-20 ${className}`}>
-      <div className="mb-4 flex items-center gap-3">
-        <span className="hud-label text-accent">{index}</span>
-        <span className="h-px w-10 bg-line" aria-hidden="true" />
+      <div className="mb-5 flex items-center gap-4">
+        <span className="border border-ice/70 px-2 py-1 font-mono text-[11px] leading-none text-ice">
+          [{index}]
+        </span>
         <span className="hud-label">{label}</span>
+        <span className="h-px flex-1 bg-line" aria-hidden="true" />
+        <span className="font-mono text-sm leading-none text-accent" aria-hidden="true">
+          +
+        </span>
       </div>
       <AnimatedText
         as="h2"

@@ -47,9 +47,9 @@ export default function CustomCursor() {
       ring.style.width = `${size}px`;
       ring.style.height = `${size}px`;
       ring.style.borderColor =
-        mode === "default" ? "rgba(232,236,244,0.35)" : "rgba(94,234,212,0.8)";
+        mode === "default" ? "rgba(27,23,18,0.35)" : "rgba(223,69,29,0.85)";
       ring.style.background =
-        mode === "project" ? "rgba(94,234,212,0.08)" : "transparent";
+        mode === "project" ? "rgba(223,69,29,0.10)" : "transparent";
       label.style.opacity = mode === "project" ? "1" : "0";
       dot.style.transform = `translate(-50%, -50%) scale(${
         mode === "default" ? 1 : 0.5
@@ -109,8 +109,8 @@ export default function CustomCursor() {
       />
       <div
         ref={ringRef}
-        className="pointer-events-none fixed flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border opacity-0 shadow-[0_0_30px_rgba(94,234,212,0.15)] transition-[width,height,border-color,background,opacity] duration-300"
-        style={{ left: 0, top: 0, borderColor: "rgba(232,236,244,0.35)" }}
+        className="pointer-events-none fixed flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border opacity-0 shadow-[0_0_24px_rgba(223,69,29,0.18)] transition-[width,height,border-color,background,opacity] duration-300"
+        style={{ left: 0, top: 0, borderColor: "rgba(27,23,18,0.35)" }}
       >
         <span
           ref={labelRef}
