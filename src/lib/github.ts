@@ -28,6 +28,8 @@ type GitHubRepo = {
 };
 
 const TITLE_OVERRIDES: Record<string, string> = {
+  "lexsearch-evalbench": "LexSearch EvalBench",
+  RouteWise: "RouteWise",
   triptunes_mern: "TripTunes",
   "Prognosis-PredictDisease": "Prognosis",
   "tokenscope-llama-latency-lab": "TokenScope — LLaMA Latency Lab",
@@ -40,7 +42,17 @@ const DESCRIPTION_OVERRIDES: Record<string, string> = {
     "Experimental lab for measuring and analyzing LLaMA token-level inference latency.",
 };
 
+// Pinned repos that should always surface first, in this order. Boosted hard
+// in scoreRepo so they outrank everything else regardless of stars/recency.
+const PINNED_ORDER: string[] = [
+  "lexsearch-evalbench",
+  "RouteWise",
+  "TrueScan",
+];
+
 const DOMAIN_RULES: [RegExp, string][] = [
+  [/rag|retriev|rerank|bm25|evalbench|nDCG/i, "AI / Retrieval Systems"],
+  [/gateway|router|routewise|observability|cache/i, "AI / LLM Infrastructure"],
   [/llm|llama|token|gpt|prompt/i, "AI / LLM Systems"],
   [/scan|vision|image|detect|predict/i, "AI / Computer Vision"],
   [/mern|booking|travel|web|site/i, "Full-Stack Web"],
@@ -62,6 +74,11 @@ function inferDomain(repo: GitHubRepo): string {
 /** Score repos so AI/LLM, recent, described, demo-linked work surfaces first. */
 function scoreRepo(repo: GitHubRepo): number {
   let score = 0;
+  // Pinned repos get a dominant boost (descending by their order in the list).
+  const pinIdx = PINNED_ORDER.findIndex(
+    (n) => n.toLowerCase() === repo.name.toLowerCase()
+  );
+  if (pinIdx !== -1) score += 1000 - pinIdx * 10;
   const haystack = `${repo.name} ${repo.description ?? ""}`.toLowerCase();
   if (/llm|llama|ai|vision|scan|token|synthetic/.test(haystack)) score += 40;
   if (/swift|electron|mern|full.?stack|web/.test(haystack)) score += 20;

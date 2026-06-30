@@ -9,6 +9,34 @@ import type { Project } from "@/lib/github";
 
 export const fallbackProjects: Project[] = [
   {
+    name: "lexsearch-evalbench",
+    title: "LexSearch EvalBench",
+    description:
+      "Production-grade RAG evaluation bench — hybrid retrieval (BM25 + dense + rerank), citation faithfulness, and Recall@K / MRR / nDCG ablations. Runs locally, no API key required.",
+    language: "Python",
+    url: "https://github.com/rakexhs/lexsearch-evalbench",
+    homepage: null,
+    stars: 1,
+    pushedAt: "2026-06-30T04:25:15Z",
+    topics: ["rag", "retrieval", "evaluation", "bm25", "rerank"],
+    featured: true,
+    domain: "AI / Retrieval Systems",
+  },
+  {
+    name: "RouteWise",
+    title: "RouteWise",
+    description:
+      "OpenAI-compatible multi-model LLM gateway with semantic caching, fallbacks, cost tracking, and observability.",
+    language: "Python",
+    url: "https://github.com/rakexhs/RouteWise",
+    homepage: null,
+    stars: 0,
+    pushedAt: "2026-06-30T19:32:29Z",
+    topics: ["llm", "gateway", "caching", "observability"],
+    featured: false,
+    domain: "AI / LLM Infrastructure",
+  },
+  {
     name: "TrueScan",
     title: "TrueScan",
     description: "TrueScan Visual Synthetic Image Verification System",
@@ -18,7 +46,7 @@ export const fallbackProjects: Project[] = [
     stars: 0,
     pushedAt: "2026-05-11T07:04:51Z",
     topics: [],
-    featured: true,
+    featured: false,
     domain: "AI / Computer Vision",
   },
   {
